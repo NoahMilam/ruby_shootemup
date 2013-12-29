@@ -25,6 +25,8 @@ require './bullet'
 			@bulletArray.each do |bullet|
 				if collison?(badGuy,bullet)
 					puts 'kaboom'
+					@enemyArray.delete(badGuy)
+					@bulletArray.delete(bullet)
 				end
 			end
 		end
