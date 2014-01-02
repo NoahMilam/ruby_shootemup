@@ -5,11 +5,25 @@ require './enemy'
 require './bullet'
  
  class GameWindow < Gosu::Window 
-	# creating window from gosu library. false not full screen
+ #class GameWindow < State
+ 	#def initialize(gosu)
+	#	super(gosu)
+	#	self.caption = "Shoot'em up"
+		# creating window from gosu library. false not full screen
 	def initialize
 		super 800, 600, false
-		self.caption = "Shoot'em up"
+		@game_running = false
+		@font = Gosu::Font.new(self, 'Inconsolata-dz', 24)
+		title_screen
+		#game_setup
 		
+	end
+	#going to change this to its own class
+	def title_screen
+	@selection = ["PLAY press s","PASSWORD"]
+	end
+	
+	def game_setup
 		@ship = Ship.new(self)
 		@enemyArray = []
 		@bulletArray = []
@@ -19,7 +33,9 @@ require './bullet'
 			@enemyArray.push(Enemy.new(self,iX,iY))
 			iX += 140
 		end
+		@game_running = true
 	end
+	
 	def detect_collisons
 		@enemyArray.each do |badGuy|
 			@bulletArray.each do |bullet|
@@ -39,8 +55,12 @@ require './bullet'
 		end
 	
 	def update
+		
+		if button_down? Gosu::KbS
+		game_setup
+		end
 		#move the ship
-		detect_collisons
+		
 		if button_down? Gosu::KbLeft
 			@ship.moveLeft
 		end
@@ -53,15 +73,23 @@ require './bullet'
 		if button_down? Gosu::KbDown
 			@ship.moveDown
 		end
-		
-		@enemyArray.each{|x| x.move}
-		@bulletArray.each{|x| x.move}
+		if @game_running
+			detect_collisons
+			@enemyArray.each{|x| x.move}
+			@bulletArray.each{|x| x.move}
+		end
 	end
+	
 	def draw
+		unless @game_running
+			@font.draw("SHOOT'EM", 240, 100, 50, 2.8, 2.8, 0xffffffff)
+			@font.draw(@selection.fetch(0), 240, 200, 50, 2, 2, 0xffffffff)
+			@font.draw(@selection.fetch(1), 240, 300, 50, 2, 2, 0xffffffff)			
+		end	
+		return unless @game_running
 		@ship.draw
-		
-		@enemyArray.each {|x| x.draw}
-		@bulletArray.each {|x| x.draw}
+			@enemyArray.each {|x| x.draw}
+			@bulletArray.each {|x| x.draw}
 	end
 	def button_down(id)
 		if id == Gosu::KbSpace
