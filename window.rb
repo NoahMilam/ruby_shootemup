@@ -7,9 +7,8 @@ class Window <Gosu::Window
   
 	def initialize
 		super 800, 600, false
-		#puts STATE[:gameWindow]
 		self.current_state = eval(STATE[:game])
-				
+		 @background_image = Gosu::Image.new(self,'space.png', false)		
 	end
   
   
@@ -20,5 +19,15 @@ class Window <Gosu::Window
   
 	def draw 
 	 self.current_state.draw
+	 @background_image.draw(0, 0, BackgroundLayer)
 	end
+	
+	def button_down(id)
+		puts "button down in window.rb"
+		self.current_state.button_down(id)
+	end
+	
+	def button_up(id)
+    #self.current_state.button_up(id)
+  end
 end

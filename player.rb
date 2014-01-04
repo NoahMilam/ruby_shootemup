@@ -33,6 +33,6 @@ class Ship
 	end
 	
 	def draw
-		@image.draw(@x,@y,1)
+		@image.draw(@x,@y,StageLayer)
 	end
 end

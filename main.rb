@@ -14,5 +14,6 @@ require './phX'
 #game window
 require './window'
 
-
+# layers
+BackgroundLayer, StageLayer =* 1..1000
 Window.new.show

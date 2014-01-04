@@ -2,9 +2,9 @@ class GamePlay < State
  	def initialize(gosu)
 		super(gosu)
 		@gosu = gosu
-		#gosu.caption = "Shoot'em up"
+		gosu.caption = "Shoot'em up"
 		# creating window from gosu library. false not full screen
-				@ship = Ship.new(gosu)
+		@ship = Ship.new(gosu)
 		@enemyArray = []
 		@bulletArray = []
 		iX = 20
@@ -39,7 +39,6 @@ class GamePlay < State
 	def update	
 		#move the ship
 		# had to have @gosu bc its a method on Gosu::woindow
-		#http://www.libgosu.org/cgi-bin/mwf/topic_show.pl?pid=5596;hl=button_down%5c%3f%20error
 		if @gosu.button_down? Gosu::KbLeft
 			@ship.moveLeft
 		end
@@ -52,7 +51,6 @@ class GamePlay < State
 		if @gosu.button_down? Gosu::KbDown
 			@ship.moveDown
 		end
-
 		detect_collisons
 		@enemyArray.each{|x| x.move}
 		@bulletArray.each{|x| x.move}
@@ -66,26 +64,12 @@ class GamePlay < State
 	end
 	
 	def button_down(id)
-		if id == Gosu::KbSpace
-			@bulletArray.push(Bullet.new(gosu,@ship.x  + 5,@ship.y + 10))
-			@bulletArray.push(Bullet.new(gosu,@ship.x + 55,@ship.y + 10))
-		end
-		case id
-			when Gosu::KbLeft
-				@ship.moveLeft
-			when Gosu::KbRight
-				@ship.moveRight
+		if @gosu.button_down? Gosu::KbSpace
+			@bulletArray.push(Bullet.new(@gosu,@ship.x  + 5,@ship.y + 10))
+			@bulletArray.push(Bullet.new(@gosu,@ship.x + 55,@ship.y + 10))
 		end
 	end
 	
-	def button_up(id)
-		case id
-		when Gosu::KbLeft
-		@ship.moveight
-		when Gosu::KbRight
-		@ship.moveLeft
-		end
-	end
 end
 
 

@@ -18,6 +18,6 @@ class Bullet
 	end
 	
 	def draw
-		@image.draw(@x,@y,1)
+		@image.draw(@x,@y,2)
 	end
 end
