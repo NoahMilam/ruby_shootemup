@@ -3,11 +3,12 @@ class Window <Gosu::Window
 	attr_accessor :current_state
     
 	STATE = {:main  => "StartMenu.new(self)",
-			:game   => "GamePlay.new(self)"}
+			:game   => "GamePlay.new(self)",
+			:password => "Password.new(self)"}
   
 	def initialize
 		super 800, 600, false
-		self.current_state = eval(STATE[:game])
+		self.current_state = eval(STATE[:main])
 		 @background_image = Gosu::Image.new(self,'space.png', false)		
 	end
   
@@ -29,5 +30,9 @@ class Window <Gosu::Window
 	
 	def button_up(id)
     #self.current_state.button_up(id)
+  end
+   def next_state(state)
+    self.current_state = eval(STATE[state])
+  
   end
 end
