@@ -2,7 +2,7 @@
 class Enemy
 	attr_reader :x, :y, :w, :h
 	def initialize(window,iX,iY)
-		@image = Gosu::Image.new(window,'enemyOne.png',false)
+		@image = Gosu::Image.new(window,'enemy1.png',false)
 		@x = iX
 		@y = iY
 		@moveShip = 3
