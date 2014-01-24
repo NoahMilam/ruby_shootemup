@@ -1,7 +1,6 @@
 require 'rubygems'
 require 'gosu'
 
-
 require './player'
 require './enemy'
 require './bullet'

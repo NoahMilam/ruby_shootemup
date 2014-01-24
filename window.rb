@@ -9,7 +9,7 @@ class Window <Gosu::Window
 	def initialize
 		super 800, 600, false
 		self.current_state = eval(STATE[:main])
-		 @background_image = Gosu::Image.new(self,'space.png', false)		
+		 @background_image = Gosu::Image.new(self,'outerspace.png', false)
 	end
   
   

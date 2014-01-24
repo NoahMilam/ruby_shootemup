@@ -5,6 +5,7 @@ class GamePlay < State
 		gosu.caption = "Shoot'em up"
 		# creating window from gosu library. false not full screen
 		@ship = Ship.new(gosu)
+		
 		@enemyArray = []
 		@bulletArray = []
 		iX = 20
@@ -35,6 +36,10 @@ class GamePlay < State
 			common_y = hitbox_1[:y] & hitbox_2[:y]
 			common_x.size > 0 && common_y.size > 0 
 		end
+	def enemy_shoots
+		
+		
+	end
 	
 	def update	
 		#move the ship
@@ -52,6 +57,12 @@ class GamePlay < State
 			@ship.moveDown
 		end
 		detect_collisons
+		
+		
+		#scheduler.in '20m' do
+		#	puts "order ristretto"
+		#end
+		enemy_shoots
 		@enemyArray.each{|x| x.move}
 		@bulletArray.each{|x| x.move}
 		
@@ -65,8 +76,8 @@ class GamePlay < State
 	
 	def button_down(id)
 		if @gosu.button_down? Gosu::KbSpace
-			@bulletArray.push(Bullet.new(@gosu,@ship.x  + 5,@ship.y + 10))
-			@bulletArray.push(Bullet.new(@gosu,@ship.x + 55,@ship.y + 10))
+			@bulletArray.push(Bullet.new(@gosu,@ship.x  + 5,@ship.y + 10,0))
+			@bulletArray.push(Bullet.new(@gosu,@ship.x + 55,@ship.y + 10,0))
 		end
 	end
 	

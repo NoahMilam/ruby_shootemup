@@ -1,10 +1,12 @@
 class Bullet
 	attr_reader :x, :y, :w, :h
-	def initialize(window,iX,iY)
+	def initialize(window,iX,iY,id)
 		@x =iX
 		@y = iY
-		@image = Gosu::Image.new(window,'bullet.png',false)
-		puts (@image.height).to_i
+		player_or_enemy = [Gosu::Image.new(window,'bullet.png',false), Gosu::Image.new(window,'enemy_bullet.png',false)]
+		#pass in if enemy or player
+		@image = player_or_enemy[id]
+		
 	end
 	
 	def hitBox
@@ -15,6 +17,9 @@ class Bullet
 	
 	def move
 		@y -= 8
+	end
+	def enemy_move
+		@y += 6
 	end
 	
 	def draw
