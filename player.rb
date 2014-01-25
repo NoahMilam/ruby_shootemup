@@ -2,7 +2,7 @@
 class Ship
 	attr_reader :x, :y, :w, :h
 	def initialize(window)
-		@image = Gosu::Image.new(window,'sShip.png',false)
+		@image = Gosu::Image.new(window,'Gship.png',false)
 		@x = 350
 		@y = 550
 		@w =60

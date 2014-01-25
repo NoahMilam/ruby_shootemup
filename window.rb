@@ -24,7 +24,6 @@ class Window <Gosu::Window
 	end
 	
 	def button_down(id)
-		puts "button down in window.rb"
 		self.current_state.button_down(id)
 	end
 	

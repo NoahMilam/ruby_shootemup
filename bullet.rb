@@ -3,7 +3,13 @@ class Bullet
 	def initialize(window,iX,iY,id)
 		@x =iX
 		@y = iY
-		player_or_enemy = [Gosu::Image.new(window,'bullet.png',false), Gosu::Image.new(window,'enemy_bullet.png',false)]
+		player_or_enemy = [ Gosu::Image.new(window,'enemy_bullet.png',false),
+							Gosu::Image.new(window,'bullet.png',false), 
+							Gosu::Image.new(window,'bullet2.png',false),
+							Gosu::Image.new(window,'bullet3.png',false), 
+							Gosu::Image.new(window,'bullet3.png',false), 
+							Gosu::Image.new(window,'bullet3.png',false), 
+							Gosu::Image.new(window,'bullet3.png',false)]
 		#pass in if enemy or player
 		@image = player_or_enemy[id]
 		
@@ -26,3 +32,4 @@ class Bullet
 		@image.draw(@x,@y,2)
 	end
 end
+
