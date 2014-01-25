@@ -23,6 +23,7 @@ class Bullet
 	
 	def move
 		@y -= 8
+		@x = @x
 	end
 	def enemy_move
 		@y += 6
@@ -33,3 +34,16 @@ class Bullet
 	end
 end
 
+class Right_bullet < Bullet
+	def move
+		@y -= 7
+		@x += 2
+	end
+end
+
+class Left_bullet < Bullet
+	def move
+		@y -= 7
+		@x -= 2
+	end
+end

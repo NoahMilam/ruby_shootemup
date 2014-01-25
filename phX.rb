@@ -86,10 +86,10 @@ class GamePlay < State
 		when  Gosu::KbTab
 			bullet_select
 		when  Gosu::KbSpace
-			@bulletArray.push(Bullet.new(@gosu,@ship.x  + 5,@ship.y + 10,@bullet_id))
-			@bulletArray.push(Bullet.new(@gosu,@ship.x + 55,@ship.y + 10,@bullet_id))
+			@bulletArray.push(Bullet.new(@gosu,@ship.x  + 30,@ship.y + 10,@bullet_id))
 			if @bullet_id == 2
-				@bulletArray.push(Bullet.new(@gosu,@ship.x  + 30,@ship.y + 10,@bullet_id))
+			@bulletArray.push(Left_bullet.new(@gosu,@ship.x  + 5,@ship.y + 10,@bullet_id))
+			@bulletArray.push(Right_bullet.new(@gosu,@ship.x + 55,@ship.y + 10,@bullet_id))
 			end
 		end
 		
