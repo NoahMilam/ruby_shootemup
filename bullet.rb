@@ -27,6 +27,7 @@ class Bullet
 	end
 	def enemy_move
 		@y += 6
+		@x = @x
 	end
 	
 	def draw
@@ -36,12 +37,26 @@ end
 
 class Right_bullet < Bullet
 	def move
+		@y -= 7.7
+		@x += 1.5
+	end
+end
+
+class Left_bullet < Bullet
+	def move
+		@y -= 7.7
+		@x -= 1.5
+	end
+end
+
+class Right_bullet_two < Bullet
+	def move
 		@y -= 7
 		@x += 2
 	end
 end
 
-class Left_bullet < Bullet
+class Left_bullet_two < Bullet
 	def move
 		@y -= 7
 		@x -= 2

@@ -1,79 +1,50 @@
-require 'rubygems' rescue nil
-$LOAD_PATH.unshift File.join(File.expand_path(__FILE__), "..", "..", "lib")
-require 'chingu'
-include Gosu
-include Chingu
-$stderr.sync = $stdout.sync = true
+require 'gosu'
 
-#
-# Testing out a new module-only-super-chain trait system
-#
-class Game < Chingu::Window
-  def initialize
-    super(600,400)
-    self.caption = "Testing out new module-based traits (SPACE for more spaceships)"
-    self.input = { :space => :create_thing, :esc => :exit }
-                retrofy
-    create_thing(200,200)
-  end
-
-  def update
-    puts "--- UPDATE ---"
-    super
-  end
-  
-  def draw
-    puts "--- DRAW ---"
-    super
-  end
-  
-  def create_thing(x=nil, y=nil)
-    Thing.create(:x => x||rand($window.width), :y => y||rand($window.height), :debug => true)
-  end
+class Scene_Intro
+        def initialize(window)
+                #@font = Font.new(window, "Verdana", 18)
+                @window = window
+                @background = Image.new(window, "graphics/gosu-splash.png", true)
+                @time = 0
+                @fading = :in
+                @fade_time = 255
+                @color = Color.new(@fade_time, 0, 0 ,0)
+        end
+        
+        def button_down(id)
+        end
+        
+        def update
+                @color = Color.new(@fade_time, 0, 0 ,0)
+                case @fading
+                        
+                when :in
+                        if @fade_time <= 0
+                                @fading = :wait
+                        else
+                                @fade_time -= 15 # 15 is cool
+                        end
+                when :wait
+                        @time += 1
+                        if @time >= 200
+                                @fading = :out
+                        end
+                when :out
+                        if @fade_time >= 255
+                                @window.scene = Transition.new(@window, Scene_Title.new(@window), :in, false)#Scene_Title.new(@window)
+                        else
+                                @fade_time += 15 # 15 is cool
+                        end
+                end
+                        
+                self.draw
+        end
+        def draw
+                @background.draw(0,0,0)
+                @window.draw_quad(0, 0, @color, 640, 0, @color, 0, 480, @color, 640, 480, @color, 500)   
+                #@font.draw("fade time: "+@fade_time.to_s, 0, 0, 600)
+                #@font.draw("wait time: "+@time.to_s, 0, 30, 600)
+                #@font.draw(@fading.to_s, 0, 60, 600)
+        end
+        
 end
-
-class Thing < Chingu::GameObject
-  trait :effect
-  trait :velocity
-  
-  def initialize(options)
-    super
-    @image = Image["spaceship.png"]
-    
-    self.rotation_center(:center)
-
-    # Julians ninjahack to get that sweet pixely feeling when zooming :)
-    # glBindTexture(GL_TEXTURE_2D, @image.gl_tex_info.tex_name)
-    # glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST)
-    # glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST)
-    #
-    # The above code has been merged into chingu as @image.retrofy
-    #
-    # @image.retrofy
-                #
-                # Use Gosu::enable_undocumented_retrofication instead!
-
-
-    self.scale = 8
-    puts "scale: " + scale.to_i.to_s
-    self.rotation_rate = 2
-    self.velocity_x = 2
-  end
-  
-  def update
-    puts "Thing#update"
-    if outside_window?
-      @velocity_x = -@velocity_x
-      self.rotation_rate = -self.rotation_rate
-    end
-  end
-  
-  def draw
-    puts "Thing#draw"
-    super
-  end
-  
-end
-
-
-Game.new.show

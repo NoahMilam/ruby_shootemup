@@ -10,7 +10,13 @@ class Ship
 		@moveShip = 5
 		
 	end
-
+	# chage me when you get final ship drawn
+	def hitBox
+		hitbox_x = ((@x).to_i..(@x + @image.width).to_i).to_a
+		hitbox_y = ((@y).to_i..(@y + @image.height).to_i).to_a
+		{:x => hitbox_x, :y => hitbox_y}
+	end
+	
 	def moveLeft 
 		if x >= 0
 			@x -= @moveShip

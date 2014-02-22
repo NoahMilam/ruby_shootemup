@@ -11,6 +11,7 @@ class Enemy
 		@edgeDown = iY + 100
 		@edgeRight = @x
 		@edgeUp = @y
+		@shot_time = 0
 	end
 
 	def hitBox
@@ -18,6 +19,19 @@ class Enemy
 		hitbox_y = ((@y).to_i..(@y + @image.height).to_i).to_a
 		{:x => hitbox_x, :y => hitbox_y}
 	end
+	
+	def shoot_count
+		@shot_time += 1
+		if @shot_time == 100
+			@shot_time = 0
+			puts "im shooting"
+		end
+	end
+	
+	def get_shot_time
+		return @shot_time
+	end
+	
 	def move 
 		if @direction == "left" 
 			@x -= @moveShip

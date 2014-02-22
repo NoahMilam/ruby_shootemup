@@ -1,12 +1,13 @@
 require 'rubygems'
 require 'gosu'
-
+require 'chingu'
 require './player'
 require './enemy'
 require './bullet'
 
 #states
 require './state'
+require './intro'
 require './start_menu'
 require './phX'
 require './password'
