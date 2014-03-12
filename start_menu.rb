@@ -16,7 +16,7 @@ class StartMenu < State
   end
 
   def draw
-    @images[:title].draw(100, 50, UILayer)
+  
 
     play_text = @unselected_color
     password_text = @unselected_color
@@ -26,7 +26,7 @@ class StartMenu < State
     else
       password_text = @selected_color
     end
-
+	@font.draw("STAY RAD",200, 50, UILayer, 1.0, 1.0, 0xffffffff)
     @font.draw("Play", 100, 200, UILayer, 1.0, 1.0, play_text)
     @font.draw("Password", 100, 300, UILayer, 1.0, 1.0, password_text)
   end

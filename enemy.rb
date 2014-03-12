@@ -12,6 +12,7 @@ class Enemy
 		@edgeRight = @x
 		@edgeUp = @y
 		@shot_time = 0
+		@shot_rate = 10* rand(15..20)
 	end
 
 	def hitBox
@@ -22,9 +23,9 @@ class Enemy
 	
 	def shoot_count
 		@shot_time += 1
-		if @shot_time == 100
+		if @shot_time == @shot_rate
 			@shot_time = 0
-			puts "im shooting"
+			 
 		end
 	end
 	

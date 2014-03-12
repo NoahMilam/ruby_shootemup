@@ -2,7 +2,7 @@ class Intro < State
 
 	def state_initialize
 		@intro_pic = Gosu::Image.new(@gosu,'p00psmile.png', false)     
- 		
+ 		@screen = 0 
 	end
 	
 	def update
@@ -23,7 +23,11 @@ class Intro < State
     end
 	 
 	if id == Gosu::KbSpace
-      @gosu.next_state(:main)
+		@intro_pic = Gosu::Image.new(@gosu,'p00psmile.png', false) 
+		if (@screen  == 1)
+			@gosu.next_state(:main)
+		end
+		@screen += 1
     end
     
   end

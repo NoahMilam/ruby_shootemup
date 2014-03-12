@@ -58,6 +58,15 @@ class GamePlay < State
 			end  
 	end
 	
+	def delet_array
+		if @bulletArray.size > 150
+		 puts "deleted array stuff"
+		end
+		if @enemybulletArray == 150
+		
+		end
+	end
+	
 	def update	
 		#move the ship
 		# had to have @gosu bc its a method on Gosu::woindow
@@ -76,6 +85,7 @@ class GamePlay < State
 		detect_collisons
 		player_hit
 		enemy_shoots
+		delet_array
 		@enemyArray.each{|x| x.move}
 		@bulletArray.each{|x| x.move}
 		@enemybulletArray.each{|x| x.enemy_move}
