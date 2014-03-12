@@ -9,6 +9,7 @@ class GamePlay < State
 		@enemyArray = []
 		@bulletArray = []
 		@enemybulletArray = []
+		@moneyArray = []
 		iX = 20
 		iY = 20
 		for i in 0..5
@@ -24,8 +25,10 @@ class GamePlay < State
 			@bulletArray.each do |bullet|
 				if collison?(badGuy,bullet)
 					puts 'kaboom'
+					@moneyArray.push(Money.new(@gosu,badGuy.get_x,badGuy.get_y))
 					@enemyArray.delete(badGuy)
 					@bulletArray.delete(bullet)
+					
 				end
 			end
 		end
@@ -36,7 +39,7 @@ class GamePlay < State
 		@enemybulletArray.each do |bullet|
 			if collison?(@ship,bullet)
 				@enemybulletArray.delete(bullet)
-				puts "you are dead mother fucker"
+				puts "you are dead mother fucka"
 			end
 			end
 	end
@@ -89,7 +92,7 @@ class GamePlay < State
 		@enemyArray.each{|x| x.move}
 		@bulletArray.each{|x| x.move}
 		@enemybulletArray.each{|x| x.enemy_move}
-		
+		@moneyArray.each{|x| x.move}
 	end
 	
 	def draw
@@ -97,6 +100,7 @@ class GamePlay < State
 		@enemyArray.each {|x| x.draw}
 		@bulletArray.each {|x| x.draw}
 		@enemybulletArray.each{|x| x.draw}
+		@moneyArray.each{|x| x.draw}
 	end
 	def bullet_select
 		if @bullet_id < 6

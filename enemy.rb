@@ -33,6 +33,14 @@ class Enemy
 		return @shot_time
 	end
 	
+	def get_x
+		return @x
+	end
+	def get_y
+		return @y
+	end
+	
+	
 	def move 
 		if @direction == "left" 
 			@x -= @moveShip

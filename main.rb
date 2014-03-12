@@ -4,7 +4,7 @@ require 'chingu'
 require './player'
 require './enemy'
 require './bullet'
-
+require './money'
 #states
 require './state'
 require './intro'
