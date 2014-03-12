@@ -16,5 +16,5 @@ require './password'
 require './window'
 
 # layers
-BackgroundLayer, StageLayer,UILayer =* 1..1000
+BackgroundLayer,WritingLayer, StageLayer,UILayer =* 1..1000
 Window.new.show

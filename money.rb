@@ -16,7 +16,7 @@ class Money
 		
 	def move 
 		@x = @x
-		@y += 9
+		@y += 5
 	end	
 	
 	def draw

@@ -1,6 +1,7 @@
 class GamePlay < State
  	def initialize(gosu)
 		super(gosu)
+		@font = Gosu::Font.new(@gosu, "Helvetica Bold", 40)
 		@gosu = gosu
 		gosu.caption = "STAY RAD"
 		@bullet_id = 2
@@ -10,6 +11,7 @@ class GamePlay < State
 		@bulletArray = []
 		@enemybulletArray = []
 		@moneyArray = []
+		@money = 0
 		iX = 20
 		iY = 20
 		for i in 0..5
@@ -41,7 +43,13 @@ class GamePlay < State
 				@enemybulletArray.delete(bullet)
 				puts "you are dead mother fucka"
 			end
+		end
+		@moneyArray.each do |bills|
+			if collison?(@ship,bills)
+				@moneyArray.delete(bills)
+				@money += 20
 			end
+		end	
 	end
 	
 	def collison?(object_1,object_2)
@@ -101,6 +109,8 @@ class GamePlay < State
 		@bulletArray.each {|x| x.draw}
 		@enemybulletArray.each{|x| x.draw}
 		@moneyArray.each{|x| x.draw}
+		@font.draw("$",10, 10,WritingLayer, 1.0, 1.0, 0xffffffff)
+		@font.draw(@money,30, 10,WritingLayer, 1.0, 1.0, 0xffffffff)
 	end
 	def bullet_select
 		if @bullet_id < 6
