@@ -1,7 +1,8 @@
 class Intro < State
 
 	def state_initialize
-		@intro_pic = Gosu::Image.new(@gosu,'p00psmile.png', false)     
+		@intro_pic = Gosu::Image.new(@gosu,'p00psmile.png', false)  
+		@stay_rad = Gosu::Image.new(@gosu,'p00psmile.png', false) 
  		@screen = 0 
 	end
 	

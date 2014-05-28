@@ -1,10 +1,11 @@
 require 'rubygems'
 require 'gosu'
-require 'chingu'
+#require 'chingu'
 require './player'
 require './enemy'
 require './bullet'
 require './money'
+require './Level'
 #states
 require './state'
 require './intro'

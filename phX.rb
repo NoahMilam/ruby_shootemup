@@ -7,6 +7,8 @@ class GamePlay < State
 		@bullet_id = 2
 		# creating window from gosu library. false not full screen
 		@ship = Ship.new(gosu)
+		@levelArray = []
+		read_file
 		@enemyArray = []
 		@bulletArray = []
 		@enemybulletArray = []
@@ -21,6 +23,21 @@ class GamePlay < State
 		
 	end
 	
+	 def read_file
+	# #open file
+	# #read 3 lines at a time put in a class
+	# #loop through
+	 file = File.open('levels.txt','r') 
+		 while !file.eof?
+			 level = file.readline
+			 enemy = file.readline
+			 pattern = file.readline
+			 @levelArray.push(Level.new(level,enemy,pattern))
+			 end
+			 @levelArray.each do |numb|
+				numb.get_level
+			end
+	 end
 	
 	def detect_collisons
 		@enemyArray.each do |badGuy|
